@@ -11,6 +11,9 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static Result sobre() { return ok("Sobre");}
+    public static Result sobre() {
+        //return ok("Sobre");
+        return ok(views.html.sobre.render("Top 100 filmes Cult", play.core.PlayVersion.current()));
+    }
 
 }
