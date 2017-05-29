@@ -11,5 +11,11 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # método HTTP GET - URI - método que será chamado
 GET     /sobre                      controllers.Application.sobre()
+GET     /diretor                    controllers.DiretorCRUD.lista()
+GET     /diretor/novo               controllers.DiretorCRUD.novoDiretor()
+GET     /diretor/:id                controllers.DiretorCRUD.detalhar(id: Long)
+POST    /diretor/:id                controllers.DiretorCRUD.alterar(id:Long)
+POST    /diretor/                   controllers.DiretorCRUD.gravar()
+POST    /diretor/:id/remover        controllers.DiretorCRUD.remover(id:Long)
 
     
