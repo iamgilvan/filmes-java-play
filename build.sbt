@@ -10,10 +10,11 @@ libraryDependencies ++= Seq(
   javaJdbc ,
   cache ,
   javaWs ,
+  "postgresql" % "postgresql" % "9.1-901-1.jdbc4" ,
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test"
 )
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
