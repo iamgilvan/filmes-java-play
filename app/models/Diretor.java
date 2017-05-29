@@ -19,4 +19,9 @@ public class Diretor extends Model {
 
     public static Model.Finder<Long,Diretor> find = new Model.Finder<Long,Diretor>(Long.class,Diretor.class);
 
+    @Override
+    public String toString() {
+        return "Diretor [nome=" + nome + "]";
+    }
+
 }
