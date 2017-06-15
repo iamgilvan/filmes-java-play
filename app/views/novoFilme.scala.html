@@ -1,0 +1,49 @@
+@import helper._
+@(filmeForm: Form[Filme],diretores: List[Diretor])
+
+@implicitField = @{ FieldConstructor(campo.f)}
+
+@main(Messages("filme.novo")) {
+    <div class="container">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="@routes.FilmeCRUD.lista()">Home</a> </li>
+        </ul>
+
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                @form(action = routes.FilmeCRUD.gravar(),'class -> "form-horizontal") {
+
+                <fieldset>
+                    <legend>@Messages("filme.novo")</legend>
+                    @select(
+                        filmeForm("ano"),
+                        options(Filme.anoOptions),
+                        '_label -> Messages("filme.ano"),
+                        '_default -> Messages("filme.ano.combo")
+                    )
+
+                    @inputText(filmeForm("nome"),'_label -> Messages("filme.nome"))
+
+                    @select(
+                        filmeForm("diretor.id"),
+                        options(Diretor.options),
+                        '_label -> Messages("filme.diretor"), '_default -> Messages("filme.diretor.combo")
+                    )
+
+                    @inputText(filmeForm("duracao"), '_label -> Messages("filme.duracao"))
+
+                    @inputText(filmeForm("genero"), '_label -> Messages("filme.genero"))
+                </fieldset>
+
+                <div class="form-group">
+                    <label class="col-md-3 col-md-3 control-label" for="singlebutton"></label>
+                    <div class="col-lg-6">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">@Messages("global.gravar")</button>
+                        <a href="@routes.FilmeCRUD.lista()" class="btn btn-primary">@Messages("global.cancel")</a>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+}
