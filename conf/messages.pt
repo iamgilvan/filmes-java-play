@@ -1,0 +1,22 @@
+#
+# Mensagens
+#
+
+# globais
+global.home=Home
+global.erro=Erro interno do sistema
+global.gravar=Gravar
+global.cancel=Cancelar
+
+# filme
+filme.duracao=Duração
+filme.novo=Novo filme
+filme.alterar=Alterar filme
+filme.ano=Ano
+filme.nome=Filme
+filme.diretor=Diretor
+filme.nome.hint=informe o nome do filme
+filme.genero=Gênero
+filme.ano.combo=-- Ano --
+filme.diretor.combo=-- Diretor --
+filme.curtidas=Curtidas
