@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   cache ,
   javaWs ,
   "postgresql" % "postgresql" % "9.1-901-1.jdbc4" ,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test"
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test",
+  "ws.securesocial" %% "securesocial" % "3.0-M8"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )

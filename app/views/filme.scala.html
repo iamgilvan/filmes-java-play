@@ -1,6 +1,42 @@
 @(filmes: List[Filme])
 
 @main("Filmes"){
+
+    <div id="fb-root"></div>
+
+    <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '314993242256761',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+                FB.AppEvents.logPageView();
+            };
+            
+            (function () {
+
+                if (document.getElementById('facebook-jssdk')) {return;}
+
+                var firstScriptElement = document.getElementsByTagName('script')[0];
+                var facebookJS = document.createElement('script');
+                facebookJS.id = 'facebook-jssdk'
+
+                facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+                firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+                
+            }());
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="container">
         <div class="header">
             <ul class="nav nav-pills pull-right">
@@ -33,4 +69,12 @@
             </tfoot>
         </table>
     </div>
+    <center>
+        <div
+        class="fb-comments"
+        data-href="http://localhost:9000/filme"
+        data-numposts="5"
+        data-colorscheme="light">
+        </div>
+    </center>
 }

@@ -5,6 +5,9 @@ import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
+import securesocial.core.java.SecureSocial;
+import securesocial.core.java.SecuredAction;
+import securesocial.core.java.UserAwareAction;
 
 
 import java.util.List;
@@ -18,12 +21,21 @@ public class DiretorCRUD extends Controller{
 
     private static final Form<Diretor> diretorForm = Form.form(Diretor.class);
 
+    @UserAwareAction
     public static Result lista() {
         List<Diretor> diretores = Diretor.find.findList();
+
+        //Algumas classes não são mais encontradas como no exemplo do livro(Exemplo: Identity)
+        // trecho para obter usuário.
+        //Identity user = (Identity) ctx().args.get(SecureSocial.USER_KEY);
+        //final String userName = user != null ? user.fullName() : "guest";
+
+        //return ok(views.html.diretor.render(diretores,userName));
         return ok(views.html.diretor.render(diretores));
 
     }
 
+    @SecuredAction
     public static Result remover(Long id) {
         try {
             Diretor.find.ref(id).delete();
@@ -34,6 +46,7 @@ public class DiretorCRUD extends Controller{
         return lista();
     }
 
+    @SecuredAction
     public static Result novoDiretor() {
 
         return ok(views.html.novoDiretor.render(diretorForm));
@@ -45,6 +58,7 @@ public class DiretorCRUD extends Controller{
         return ok(views.html.alterarDiretor.render(id,dirForm));
     }
 
+    @SecuredAction
     public static Result alterar(Long id) {
         form(Diretor.class).fill(Diretor.find.byId(id));
 
@@ -57,6 +71,7 @@ public class DiretorCRUD extends Controller{
 
     }
 
+    @SecuredAction
     public static Result gravar() {
         Form<Diretor> form = diretorForm.bindFromRequest();
         if (form.hasErrors()) {
