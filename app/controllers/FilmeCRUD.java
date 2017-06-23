@@ -2,10 +2,14 @@ package controllers;
 
 import models.Diretor;
 import models.Filme;
+import play.Play;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 
+import java.io.File;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -67,5 +71,22 @@ public class FilmeCRUD extends Controller {
         flash("sucesso","Registro gravado com sucesso");
 
         return redirect(routes.FilmeCRUD.lista());
+    }
+
+    public static Result upload(){
+        MultipartFormData body = request().body().asMultipartFormData();
+        FilePart picture = body.getFile("picture");
+
+        if (picture != null){
+            String filmeId =  form().bindFromRequest().get("filmeId");
+            String imagem =  filmeId + ".png";
+            File file = (File) picture.getFile();
+            String diretorioDeImagens = Play.application().configuration().getString("diretorioDeImagens");
+            file.renameTo(new File(diretorioDeImagens,imagem));
+            return ok(views.html.upload.render("Arquivo \"" + imagem + "\" foi carregado com sucesso !"));
+        } else {
+            flash("erro", "Erro ao fazer upload");
+            return redirect(routes.Application.index());
+        }
     }
 }
